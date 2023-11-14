@@ -17,16 +17,15 @@ export class AddProduitComponent {
 
   constructor(private produitService: ProduitService, private router :Router,) { }
   ngOnInit() {
-    this.categories = this.produitService.listeCategories();
+    //this.categories = this.produitService.listeCategories();
     }
-    addProduit() {
-    this.newCategorie = 
-    this.produitService.consulterCategorie(this.newIdCat);
-    this.newProduit.categorie = this.newCategorie;
-    this.produitService.ajouterProduit(this.newProduit);
-    this.router.navigate(['produits']);
-    this.message ="Produit"+this.newProduit.nomProduit+ " ajouter avec succés ";
-    }
+    addProduit(){
+      this.produitService.ajouterProduit(this.newProduit)
+      .subscribe(prod => {
+      console.log(prod);
+      this.router.navigate(['produits']);
+      });
+      }
     
  
 }
